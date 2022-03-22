@@ -250,3 +250,9 @@ Database에서 무엇인가를 가져오려고 할때 유효성 검사하는 행
 1. sendgrid 모듈 설치
 
 - npm install --save @sendgrid/mail
+
+## iron-session (serverless Sessions)
+
+- ref: https://github.com/vvo/iron-session
+- nextjs에서 session 관리 하는 방법
+- npm install iron-session
