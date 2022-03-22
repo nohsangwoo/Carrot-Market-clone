@@ -238,5 +238,14 @@ Database에서 무엇인가를 가져오려고 할때 유효성 검사하는 행
 
 ## sendgrid - by twilio
 
+- ref: https://sendgrid.com/
 - twilio가 sendgrid 사버렸음.
-  git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch .env' --prune-empty --tag-name-filter cat -- --all
+
+## or nodemailer로 대체해서 사용해도됨
+
+- node에서 메일 보내는 모듈
+- gmail과 naver등 SMTP설정 후 사용할수 있다.
+
+1. sendgrid 모듈 설치
+
+- npm install --save @sendgrid/mail

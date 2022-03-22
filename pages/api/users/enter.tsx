@@ -1,8 +1,10 @@
+import mail from '@sendgrid/mail'
 import twilio from 'twilio'
 import { NextApiRequest, NextApiResponse } from 'next'
 import withHandler, { ResponseType } from '@libs/server/withHandler'
 import client from '@libs/server/client'
 
+mail.setApiKey(process.env.SNEDGRID_KEY!)
 const twilioClient = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN)
 
 async function handler(
@@ -41,6 +43,15 @@ async function handler(
       body: `Your login token is ${payload}.`,
     })
     console.log(message)
+  } else if (email) {
+    const sendGridEmail = await mail.send({
+      from: 'nsgr12@gmail.com',
+      to: email,
+      subject: 'Your Carrot Market Verification Email',
+      text: `Your Token is ${payload}`,
+      html: `<strong>Your Token is ${payload}</strong>`,
+    })
+    console.log('sendGridEmail: ', sendGridEmail)
   }
   return res.json({
     ok: true,
