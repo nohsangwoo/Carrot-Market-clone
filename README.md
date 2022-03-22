@@ -231,6 +231,7 @@ Database에서 무엇인가를 가져오려고 할때 유효성 검사하는 행
 - ref: https://console.twilio.com/
 - 해외의 유명한 서비스이고 국내 서비스를 이용해도된다.
 - sms 전화번호 email정도 사용할꺼임. 나머지는 너무 이용료가 비싸다.
+- 현재 trial version이라서 지정된 한개의 번호로 밖에 보낼수 없다.(내 폰번호로 설정함)
 
 ## twilio cli install
 

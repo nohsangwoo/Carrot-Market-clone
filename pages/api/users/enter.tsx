@@ -37,21 +37,22 @@ async function handler(
   console.log('token result: ', token)
 
   if (phone) {
-    const message = await twilioClient.messages.create({
+    /*  const message = await twilioClient.messages.create({
       messagingServiceSid: process.env.TWILIO_MSID,
-      to: process.env.MY_PHONE!,
+      to: '+82' + phone,
+      // to: process.env.MY_PHONE!,
       body: `Your login token is ${payload}.`,
     })
-    console.log(message)
+    console.log(message) */
   } else if (email) {
-    const sendGridEmail = await mail.send({
+    /* const sendGridEmail = await mail.send({
       from: 'nsgr12@gmail.com',
       to: email,
       subject: 'Your Carrot Market Verification Email',
       text: `Your Token is ${payload}`,
       html: `<strong>Your Token is ${payload}</strong>`,
     })
-    console.log('sendGridEmail: ', sendGridEmail)
+    console.log('sendGridEmail: ', sendGridEmail)*/
   }
   return res.json({
     ok: true,
