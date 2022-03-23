@@ -3,6 +3,14 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import withHandler, { ResponseType } from '@libs/server/withHandler'
 import client from '@libs/server/client'
 
+declare module 'iron-session' {
+  interface IronSessionData {
+    user?: {
+      id: number
+    }
+  }
+}
+
 async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>,
@@ -16,12 +24,13 @@ async function handler(
     },
     // include: { user: true },
   })
+  console.log('exist: ', exist)
 
-  if (!exist) res.status(404).end()
+  if (!exist) return res.status(404).end()
 
   console.log(exist)
   req.session.user = {
-    id: exist?.userId,
+    id: exist.userId,
   }
   //  알아서 암호화 하고 browser cookie에 저장한다.
   await req.session.save()
