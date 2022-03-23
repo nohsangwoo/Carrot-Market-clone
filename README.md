@@ -256,3 +256,9 @@ Database에서 무엇인가를 가져오려고 할때 유효성 검사하는 행
 - ref: https://github.com/vvo/iron-session
 - nextjs에서 session 관리 하는 방법
 - npm install iron-session
+
+## withSession HOF로 session관리하기
+
+password generator로 password 만들기
+
+- https://passwordsgenerator.net/

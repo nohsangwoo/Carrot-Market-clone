@@ -13,8 +13,12 @@ async function handler(
 ) {
   const { phone, email } = req.body
 
-  console.log('phone and email: ', phone, email)
-  const user = phone ? { phone: +phone } : email ? { email } : null
+  const removeFirstZero = (phoneNumber: string): string => {
+    if (phoneNumber.charAt(0) === '0') return phone.slice(1)
+    return phoneNumber
+  }
+  const phoneWithoutZero = removeFirstZero(phone)
+  const user = phone ? { phone: phoneWithoutZero } : email ? { email } : null
   if (!user) return res.status(400).json({ ok: false })
   const payload = Math.floor(100000 + Math.random() * 900000) + ''
   const token = await client.token.create({
@@ -36,10 +40,10 @@ async function handler(
 
   console.log('token result: ', token)
 
-  if (phone) {
+  if (phoneWithoutZero) {
     /*  const message = await twilioClient.messages.create({
       messagingServiceSid: process.env.TWILIO_MSID,
-      to: '+82' + phone,
+      to: '+82' + phoneWithoutZero,
       // to: process.env.MY_PHONE!,
       body: `Your login token is ${payload}.`,
     })
