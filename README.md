@@ -262,3 +262,7 @@ Database에서 무엇인가를 가져오려고 할때 유효성 검사하는 행
 password generator로 password 만들기
 
 - https://passwordsgenerator.net/
+
+## nextAuth 알아보기
+
+- ref: https://next-auth.js.org/
