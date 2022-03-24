@@ -266,3 +266,10 @@ password generator로 password 만들기
 ## nextAuth 알아보기
 
 - ref: https://next-auth.js.org/
+
+## router.push & router.replace
+
+- router.push
+  뒤로가기 있음(히스토리 있음)
+- router.replace
+  뒤로가기 없음(히스토리 없음)
