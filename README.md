@@ -273,3 +273,11 @@ password generator로 password 만들기
   뒤로가기 있음(히스토리 있음)
 - router.replace
   뒤로가기 없음(히스토리 없음)
+
+## SWR
+
+- ref: https://swr.vercel.app/ko
+- react query 같은건데 캐싱이 잘됨.
+- npm i swr --legacy-peer-deps
+  (Installation method when React 18 version is not yet official)
+- SWRConfig라는 프로바이더를 적용하여 gobal value를 적용할 수 있다.
