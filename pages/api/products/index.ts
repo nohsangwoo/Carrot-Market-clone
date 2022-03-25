@@ -7,8 +7,6 @@ async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>,
 ) {
-  console.log('body: ')
-
   const {
     body: { name, price, description },
     session: { user },
@@ -26,6 +24,7 @@ async function handler(
       },
     },
   })
+
   if (!product) return res.status(404).end()
   return res.json({
     ok: true,
