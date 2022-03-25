@@ -281,3 +281,13 @@ password generator로 password 만들기
 - npm i swr --legacy-peer-deps
   (Installation method when React 18 version is not yet official)
 - SWRConfig라는 프로바이더를 적용하여 gobal value를 적용할 수 있다.
+
+## prisma client 객체가 계속 생성되는 버그 해결
+
+## db에 text 길이제한 옵션
+
+- @db.MediumText
+  기본varchar 길이랑 다른 길이 제한을 입력받을 수 있다.
+
+npm i --save-dev prisma@latest
+npm i @prisma/client@latest
