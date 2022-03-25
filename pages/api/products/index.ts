@@ -7,24 +7,29 @@ async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>,
 ) {
-  console.log('body: ', req.body)
+  console.log('body: ')
+
+  const {
+    body: { name, price, description },
+    session: { user },
+  } = req
   const product = await client.product.create({
     data: {
-      name: req.body.name,
-      price: +req.body.price,
-      image: req.body.image || '',
-      description: req.body.description,
+      name,
+      price: +price,
+      image: 'req.body.image' || '',
+      description,
       user: {
         connect: {
-          id: req?.session?.user?.id,
+          id: user?.id,
         },
       },
     },
   })
   if (!product) return res.status(404).end()
-  //   console.log(product)
   return res.json({
     ok: true,
+    product,
   })
 }
 
