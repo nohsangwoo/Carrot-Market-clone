@@ -34,4 +34,6 @@ async function handler(
   return res.json({ ok: true })
 }
 
-export default withApiSession(withHandler({ methods: ['POST'], handler }))
+export default withApiSession(
+  withHandler({ methods: ['POST'], handler, isPrivate: false }),
+)
