@@ -305,3 +305,21 @@ npm i @prisma/client@latest
 - 현재 요청한 fetch가 아닌 다른 fetch의 캐시 데이터를 수정함
 - useSWRConfig에서 mutate를 추출하고
   mutate("캐시대상아이디("api end point",)
+
+## `prisma _count`
+
+- prisma에서 자체적으로 자신에게 연결된 관계가 몇개인지 count해주는 기능이 있다
+
+해당 product에 연결된 favs의 갯수를 구하여라
+
+```
+const products = await client.product.findMany({
+  include: {
+    _count: {
+      select: {
+        favs: true,
+      },
+    },
+  },
+})
+```
