@@ -291,3 +291,10 @@ password generator로 password 만들기
 
 npm i --save-dev prisma@latest
 npm i @prisma/client@latest
+
+## SWR cache mutation
+
+- ref: https://swr.vercel.app/ko/docs/mutation
+  SWR로 refetch 하지않고 내부적으로 cache에 저장된 값을 변경하여 빠른 사용자 경험 제공
+
+- mutate의 첫번째인자는 캐시에 덮어씌울 데이터, 두번째 인자는 재검증 여부임, 캐쉬에 덮어씌운 이후 refetch를 통해 재검증을 할것이냐 OR 캐쉬에 덮어씌운 이후 아무것도 하지 않을 것인가 선택사항(true or false)
