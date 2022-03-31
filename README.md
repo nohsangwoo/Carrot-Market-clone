@@ -303,3 +303,5 @@ npm i @prisma/client@latest
 ## SWR cache unbound mutation
 
 - 현재 요청한 fetch가 아닌 다른 fetch의 캐시 데이터를 수정함
+- useSWRConfig에서 mutate를 추출하고
+  mutate("캐시대상아이디("api end point",)
