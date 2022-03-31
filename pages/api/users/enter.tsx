@@ -13,11 +13,15 @@ async function handler(
 ) {
   const { phone, email } = req.body
 
-  const removeFirstZero = (phoneNumber: string): string => {
+  console.log(phone, email)
+
+  const removeFirstZero = (phoneNumber?: string): string | undefined => {
+    if (!phoneNumber) return undefined
     if (phoneNumber.charAt(0) === '0') return phone.slice(1)
     return phoneNumber
   }
   const phoneWithoutZero = removeFirstZero(phone)
+
   const user = phone ? { phone: phoneWithoutZero } : email ? { email } : null
   if (!user) return res.status(400).json({ ok: false })
   const payload = Math.floor(100000 + Math.random() * 900000) + ''
@@ -40,7 +44,7 @@ async function handler(
 
   console.log('token result: ', token)
 
-  if (phoneWithoutZero) {
+  if (phone) {
     /*  const message = await twilioClient.messages.create({
       messagingServiceSid: process.env.TWILIO_MSID,
       to: '+82' + phoneWithoutZero,
