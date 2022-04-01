@@ -354,3 +354,8 @@ where: {
 예를 들어 useEffect에서 state의 변경된 값으로
 첫번째 실행을 하려고 해도 pre generate로 인하여
 미리 state가 특정값으로 변하기전에 useEffect가 실행되는 경우가 있다. 이런 점들을 의식해야함.
+
+## schema에서 enum형식을 지정할 수 도 있다.
+
+Sale, Purchase, Fav 테이블의 구성은 완벽하게 동일하기에
+이것을 Record란 테이블로 한데모아서 kind로 종류만 구분하여 기록하는것이 실DB구성 모델에 가깝다.
