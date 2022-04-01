@@ -348,3 +348,9 @@ where: {
 - api의 endpoint가 src/pages/api/posts/[id]/index
 
 - req.query.params로 접근 가능
+
+## Nextjs에서는 항상 pre generate를 의식해야함
+
+예를 들어 useEffect에서 state의 변경된 값으로
+첫번째 실행을 하려고 해도 pre generate로 인하여
+미리 state가 특정값으로 변하기전에 useEffect가 실행되는 경우가 있다. 이런 점들을 의식해야함.
