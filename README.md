@@ -323,3 +323,28 @@ const products = await client.product.findMany({
   },
 })
 ```
+
+## 검색 범위 조절
+
+- 사용자의 위치를 기준으로
+  0.01 < 사용자의 위치 < +0.01도
+  범위내의 post또는 게시물을 가져온다.
+
+```
+where: {
+  latitude: {
+    gte: parsedLatitude - 0.01,
+    lte: parsedLatitude + 0.01,
+  },
+  longitude: {
+    gte: parsedLongitue - 0.01,
+    lte: parsedLongitue + 0.01,
+  },
+},
+```
+
+## backend api에서도 query string의 값을 추출할수 있다
+
+- api의 endpoint가 src/pages/api/posts/[id]/index
+
+- req.query.params로 접근 가능
