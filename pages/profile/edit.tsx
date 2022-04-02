@@ -26,13 +26,12 @@ const EditProfile: NextPage = () => {
     setValue,
     handleSubmit,
     setError,
+    clearErrors,
     formState: { errors },
-  } = useForm<EditProfileForm>()
-  useEffect(() => {
-    if (user?.name) setValue('name', user.name)
-    if (user?.email) setValue('email', user.email)
-    if (user?.phone) setValue('phone', user.phone)
-  }, [user, setValue])
+  } = useForm<EditProfileForm>({
+    mode: 'onChange',
+  })
+
   const [editProfile, { data, loading }] =
     useMutation<EditProfileResponse>(`/api/users/me`)
   const onValid = ({ email, phone, name }: EditProfileForm) => {
@@ -48,6 +47,13 @@ const EditProfile: NextPage = () => {
       name,
     })
   }
+
+  useEffect(() => {
+    if (user?.name) setValue('name', user.name)
+    if (user?.email) setValue('email', user.email)
+    if (user?.phone) setValue('phone', user.phone)
+  }, [user, setValue])
+
   useEffect(() => {
     if (data && !data.ok && data.error) {
       setError('formErrors', { message: data.error })
