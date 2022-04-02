@@ -359,3 +359,7 @@ where: {
 
 Sale, Purchase, Fav 테이블의 구성은 완벽하게 동일하기에
 이것을 Record란 테이블로 한데모아서 kind로 종류만 구분하여 기록하는것이 실DB구성 모델에 가깝다.
+
+## react hook form - valueAsNumber option
+
+- number로 형변환 해줌
