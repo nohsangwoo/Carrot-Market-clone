@@ -385,3 +385,16 @@ Sale, Purchase, Fav 테이블의 구성은 완벽하게 동일하기에
 - ref: https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/connection-pool
 
 ## todo - react query를 이용하여 infinite scroll 구현하기
+
+## client에서 바로 cloud flare로 direct upload 방법
+
+- ref: https://developers.cloudflare.com/images/cloudflare-images/upload-images/direct-creator-upload/
+
+- 비슷한것으로는 presiged url이라는것이 있다.
+
+## cloud flare setup
+
+client에서 바로 이미지 업로드 가능하게 변경
+aws presigned url과 비슷함
+
+- cloud flare accound id와 image token을 생성하고 저장한다.
