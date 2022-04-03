@@ -363,3 +363,25 @@ Sale, Purchase, Fav 테이블의 구성은 완벽하게 동일하기에
 ## react hook form - valueAsNumber option
 
 - number로 형변환 해줌
+
+## prisma suctom command 생성하고 실행하기
+
+- package.json 명령어 생성
+
+```
+"prisma": {
+  "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+}
+```
+
+- 명령어 실행문
+  npx prisma db seed
+
+-
+
+## 자동으로 stream에 500개정도 쿼리 박아주는 자동 인젝션 파일 생성
+
+- 이때 동시 접속제한을 풀어줘야함
+- ref: https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/connection-pool
+
+## todo - react query를 이용하여 infinite scroll 구현하기
