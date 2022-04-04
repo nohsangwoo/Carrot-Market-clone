@@ -398,3 +398,13 @@ client에서 바로 이미지 업로드 가능하게 변경
 aws presigned url과 비슷함
 
 - cloud flare accound id와 image token을 생성하고 저장한다.
+
+## resize images
+
+- ref: https://developers.cloudflare.com/images/cloudflare-images/resize-images/
+
+- cloud flare에서 custom variant를 만들고 variant_name에 입력해주면된다
+  https://imagedelivery.net/F970tsu1DA6roLNnxFl6kw/<image_id>/<variant_name>
+
+- custom variant setting up ref:
+  https://dash.cloudflare.com/6ff51fffdc451e53748cb3ae81b128f0/images/variants
