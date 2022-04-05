@@ -408,3 +408,36 @@ aws presigned url과 비슷함
 
 - custom variant setting up ref:
   https://dash.cloudflare.com/6ff51fffdc451e53748cb3ae81b128f0/images/variants
+
+## Nextjs에서의 image 처리
+
+- nextjs에서는 일반 image tag를 사용하지않고 nextjs에서 제공하는 image component를 사용한다
+- ref1: https://nextjs.org/docs/basic-features/image-optimization
+- ref2: https://nextjs.org/docs/api-reference/next/image
+
+- lazy loading기능 자동 제공
+- 이미지 파일을 로드하기 시작하면 loading이 완료 되기 이전 흐릿하게 blur처리된 pre image를 렌더링 해줌
+
+## Nextjs Image 종류
+
+- local image
+  말그대로 nextjs파일시스템에 존재하는 이미지
+- remote image
+  외부에 저장된 이미지
+
+## Nextjs Image - next.config.js 설정
+
+- remote image의 경우 이미지 도메인설정을 해줘야한다.
+
+```
+// next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    domains: ['imagedelivery.net'],
+  },
+}
+
+module.exports = nextConfig
+```
