@@ -457,3 +457,8 @@ module.exports = nextConfig
   />
 </div>
 ```
+
+## NextJs Image - blurDataURL
+
+- ref: https://nextjs.org/docs/messages/placeholder-blur-data-url
+- remote image는 local과 달리 blur처리를 할 수 없는데 만약 blur처리된 이미지 경로를 따로 제공해준다면 loading중엔 블러 처리된 이미지를 보여주다가 loading이 완료되면 다운로드 완료된 이미지를 대체해준다.
