@@ -462,3 +462,32 @@ module.exports = nextConfig
 
 - ref: https://nextjs.org/docs/messages/placeholder-blur-data-url
 - remote image는 local과 달리 blur처리를 할 수 없는데 만약 blur처리된 이미지 경로를 따로 제공해준다면 loading중엔 블러 처리된 이미지를 보여주다가 loading이 완료되면 다운로드 완료된 이미지를 대체해준다.
+
+## cloud flare - stream
+
+https://dash.cloudflare.com/profile/api-tokens
+에서 api key를 생성후 가져오기
+
+1. create token
+2. permission - account, streas, edit 선택
+3. create token
+4. token copy & paste
+
+- stream api 사용시 옵션은 body 부분으로 설정
+
+```
+await fetch(
+    `https://api.cloudflare.com/client/v4/accounts/${process.env.CF_ID}/stream/live_inputs`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.CF_STREAM_TOKEN}`,
+      },
+      body: `{"meta": {"name":"${name}"},"recording": { "mode": "automatic", "timeoutSeconds": 10}}`,
+    },
+  )
+).json()
+mode:는 재생옵션(영상이 끊어지면 자동으로 비디오로 저장됨
+timeoutSeconds: 사용자가 나가도 영상이 유지되는 시간
+)
+```
