@@ -8,8 +8,7 @@ import { Product, User } from '@prisma/client'
 import useMutation from '@libs/client/useMutation'
 import { cls } from '@libs/client/utils'
 import useUser from '@libs/client/useUser'
-import Image from 'next/image'
-
+import ImageWithFallback from '@components/ImageWithFallback'
 interface ProductWithUser extends Product {
   user: User
 }
@@ -42,12 +41,16 @@ const ItemDetail: NextPage = () => {
     <Layout canGoBack>
       <div className="px-4  py-4">
         <div className="mb-8">
-          <img
-            src={`https://imagedelivery.net/F970tsu1DA6roLNnxFl6kw/${data?.product.image}/public`}
-            className="h-96 bg-slate-300"
-          />
-          <div className="mt-[1000px] flex cursor-pointer items-center space-x-3 border-t border-b py-3">
-            <Image
+          <div className="relative pb-80">
+            <ImageWithFallback
+              src={`https://imagedelivery.net/F970tsu1DA6roLNnxFl6kw/${data?.product.image}/public`}
+              className="bg-slate-300 object-cover"
+              layout="fill"
+              alt={'product'}
+            />
+          </div>
+          <div className="flex cursor-pointer items-center space-x-3 border-t border-b py-3">
+            <ImageWithFallback
               width={48}
               height={48}
               src={`https://imagedelivery.net/F970tsu1DA6roLNnxFl6kw/${data?.product?.user?.avatar}/avatar`}

@@ -441,3 +441,19 @@ const nextConfig = {
 
 module.exports = nextConfig
 ```
+
+## NextJs에서 image handling
+
+- ref: https://nextjs.org/docs/api-reference/next/image
+- Image component를 relative속성의 tag로 감싸준다
+
+```
+<div className="relative pb-80">
+  <Image
+    src={`https://imagedelivery.net/F970tsu1DA6roLNnxFl6kw/${data?.product.image}/public`}
+    className="bg-slate-300 object-cover"
+    layout="fill"
+    alt={'product'}
+  />
+</div>
+```
