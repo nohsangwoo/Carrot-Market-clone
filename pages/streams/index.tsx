@@ -4,6 +4,7 @@ import FloatingButton from '@components/floating-button'
 import Layout from '@components/layout'
 import { Stream } from '@prisma/client'
 import useSWR from 'swr'
+import Image from 'next/image'
 
 interface StreamsResponse {
   ok: boolean
@@ -11,14 +12,20 @@ interface StreamsResponse {
 }
 
 const Streams: NextPage = () => {
-  const { data } = useSWR<StreamsResponse>(`/api/streams?page=3`)
+  const { data } = useSWR<StreamsResponse>(`/api/streams?page=0`)
   return (
     <Layout hasTabBar title="라이브">
       <div className=" space-y-4 divide-y-[1px]">
         {data?.streams?.map(stream => (
           <Link key={stream.id} href={`/streams/${stream.id}`}>
             <a className="block px-4  pt-4">
-              <div className="aspect-video w-full rounded-md bg-slate-300 shadow-sm" />
+              <div className="relative aspect-video w-full overflow-hidden rounded-md bg-slate-300 shadow-sm">
+                <Image
+                  layout="fill"
+                  src={`https://videodelivery.net/${stream.cloudflareId}/thumbnails/thumbnail.jpg?height=320`}
+                  alt={'thumbnail'}
+                />
+              </div>
               <h1 className="mt-2 text-2xl font-bold text-gray-900">
                 {stream.name}
               </h1>

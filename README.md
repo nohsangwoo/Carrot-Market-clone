@@ -491,3 +491,13 @@ mode:는 재생옵션(영상이 끊어지면 자동으로 비디오로 저장됨
 timeoutSeconds: 사용자가 나가도 영상이 유지되는 시간
 )
 ```
+
+## cloud flare로 stream player
+
+- ref: https://developers.cloudflare.com/stream/viewing-videos/using-the-player-api/
+
+- id, key, url을 가져온 후 player를 이용하여 동영상 재생
+
+## streamimg thumnail
+
+cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config에 추가 해줘야함

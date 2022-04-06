@@ -7,11 +7,11 @@ async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>,
 ) {
-  const {
-    session: { user },
-    body: { name, price, description },
-  } = req
   if (req.method === 'POST') {
+    const {
+      session: { user },
+      body: { name, price, description },
+    } = req
     console.log('activate stream post!')
     const {
       result: {
@@ -47,9 +47,13 @@ async function handler(
     })
     res.json({ ok: true, stream })
   } else if (req.method === 'GET') {
+    const {
+      query: { page },
+    } = req
+    console.log('query: ', page)
     const streams = await client.stream.findMany({
       take: 10,
-      skip: 20,
+      skip: +page,
     })
     res.json({ ok: true, streams })
   }
