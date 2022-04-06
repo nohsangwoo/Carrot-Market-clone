@@ -501,3 +501,13 @@ timeoutSeconds: 사용자가 나가도 영상이 유지되는 시간
 ## streamimg thumnail
 
 cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config에 추가 해줘야함
+
+## streaming controll
+
+- ref: https://developers.cloudflare.com/stream/stream-live/watch-live-stream/
+
+시청자 수, 라이브 중인지?, 녹화본 다시보기 등을 제어할수 있음
+
+위 api 사용하려면 일련의 규격을 지켜야함
+
+- ref: https://developers.cloudflare.com/stream/stream-live/start-stream-live/
