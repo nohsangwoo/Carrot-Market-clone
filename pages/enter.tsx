@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Button from '@components/button'
 import Input from '@components/input'
@@ -8,7 +8,21 @@ import { cls } from '@libs/client/utils'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 
-const Bs = dynamic(() => import('@components/bs'), { ssr: false })
+const Bs = dynamic(
+  () =>
+    new Promise(resolve =>
+      setTimeout(() => {
+        resolve(import('@components/bs'))
+      }, 10000),
+    ),
+  {
+    ssr: false,
+    // nextJs가 loading을 제어하는 방법
+    // loading: () => <span>Loading...a big commponent for you</span>,
+    // react18기능
+    suspense: true,
+  },
+)
 interface EnterForm {
   email?: string
   phone?: string
@@ -122,7 +136,9 @@ const Enter: NextPage = () => {
               ) : null}
               {method === 'phone' ? (
                 <>
-                  <Bs />
+                  <Suspense fallback={<button>loading...!</button>}>
+                    <Bs />
+                  </Suspense>
                   <Input
                     register={register('phone')}
                     name="phone"
