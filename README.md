@@ -523,3 +523,5 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 ## dynamic import
 
 - lazy loading(from nextjs) and suspense(from react18)
+
+## document setting - SEO and font loading
