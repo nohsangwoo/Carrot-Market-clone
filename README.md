@@ -511,3 +511,11 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 위 api 사용하려면 일련의 규격을 지켜야함
 
 - ref: https://developers.cloudflare.com/stream/stream-live/start-stream-live/
+
+## nextJS - middleware
+
+- 미들웨어를 실행하고 싶은 dir에서 `_middleware.ts` 파일을 만들고 순수함수를 export 시켜주면 실행된다.
+
+## NextRequest.ua
+
+- UserAgent기능, 유저가 어떤 브라우저를 사용하여 접속하였는지 알려준다.
