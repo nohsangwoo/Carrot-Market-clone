@@ -533,3 +533,8 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 - beforeInteractive: 페이지를 불러와서 상호작용하기전에 스크립트를 전부 다운받기(제일 높은 우선순위)
 - afterInteractive: 기본 스크립트를 다운받는 형식, 페이지를 먼저 불러오고 스크립트를 맨 나중에 불러오기
 - lazyOnLoad: 정말 모든 데이터를 다 불러온 후에 최후에 스크립트를 다운받는 형식
+- ref: https://usehooks.com/useScript/ 이것을 완벽하게 대체한다.
+
+## data fetching in next js
+
+- ref: https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props
