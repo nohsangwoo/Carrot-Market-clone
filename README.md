@@ -519,3 +519,5 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 ## NextRequest.ua
 
 - UserAgent기능, 유저가 어떤 브라우저를 사용하여 접속하였는지 알려준다.
+
+## dynamic import
