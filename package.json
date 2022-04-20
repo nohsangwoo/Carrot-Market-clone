@@ -7,7 +7,9 @@
     "start": "next start",
     "lint": "next lint",
     "dbpush": "npx prisma db push",
-    "studio": "npx prisma studio"
+    "studio": "npx prisma studio",
+    "db": "pscale connect carrot-market",
+    "dblogin": "pscale auth login"
   },
   "dependencies": {
     "@next/swc-darwin-arm64": "^12.0.10",

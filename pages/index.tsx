@@ -60,6 +60,7 @@ const Home: NextPage<{ products: ProductWithCount[] }> = ({
 }
 
 export async function getServerSideProps() {
+  console.log('SSR')
   // const res = await fetch('/api/products')
   // const data = await res.json()
   const products = await client.product.findMany({
