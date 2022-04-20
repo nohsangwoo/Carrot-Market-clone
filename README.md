@@ -538,3 +538,8 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 ## data fetching in next js
 
 - ref: https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props
+
+## useSWR on SSR
+
+- getServerSideProps에서 데이터를 불러온 후
+- 상위 컴포넌트에서 SWRConfig의 fallback

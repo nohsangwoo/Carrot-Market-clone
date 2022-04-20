@@ -4,9 +4,10 @@ import Item from '@components/item'
 import Layout from '@components/layout'
 import useUser from '@libs/client/useUser'
 import Head from 'next/head'
-import useSWR from 'swr'
+import useSWR, { SWRConfig } from 'swr'
 import { Product } from '@prisma/client'
 import client from '@libs/server/client'
+
 export interface ProductWithCount extends Product {
   _count: {
     favs: number
@@ -17,26 +18,26 @@ interface ProductResponse {
   products: ProductWithCount[]
 }
 
-const Home: NextPage<{ products: ProductWithCount[] }> = ({
-  products,
-}): JSX.Element => {
-  console.log('index props: ', products)
+const Home: NextPage = (): JSX.Element => {
   const { user, isLoading } = useUser()
-  // const { data } = useSWR<ProductResponse>('/api/products')
+  const { data } = useSWR<ProductResponse>('/api/products')
   console.log('user: ', user)
 
   return (
     <Layout title="홈" hasTabBar seoTitle="Home">
       <div className="flex flex-col space-y-5 divide-y">
-        {products?.map(product => (
-          <Item
-            id={product.id}
-            key={product.id}
-            title={product.name}
-            price={product.price}
-            hearts={product._count?.favs}
-          />
-        ))}
+        {data
+          ? data &&
+            data.products?.map(product => (
+              <Item
+                id={product.id}
+                key={product.id}
+                title={product.name}
+                price={product.price}
+                hearts={product._count?.favs}
+              />
+            ))
+          : 'Loading...'}
         <FloatingButton href="/products/upload">
           <svg
             className="h-6 w-6"
@@ -59,11 +60,29 @@ const Home: NextPage<{ products: ProductWithCount[] }> = ({
   )
 }
 
-export async function getServerSideProps() {
+const Page: NextPage<{ products: ProductWithCount[] }> = ({ products }) => {
+  return (
+    // 아래 옵션 fallback으로 초기값을 설정 할 수 있다.placeholder:
+    <SWRConfig
+      value={{
+        fallback: {
+          '/api/products': {
+            ok: true,
+            products,
+          },
+        },
+      }}
+    >
+      <Home />
+    </SWRConfig>
+  )
+}
+
+export const getServerSideProps = () => {
   console.log('SSR')
   // const res = await fetch('/api/products')
   // const data = await res.json()
-  const products = await client.product.findMany({
+  const products = client.product.findMany({
     include: {
       _count: {
         select: {
@@ -72,6 +91,11 @@ export async function getServerSideProps() {
       },
     },
   })
+
+  // const profile = await client.user.findUnique({
+  //   where: { id: req.session.user?.id },
+  // })
+
   return {
     props: {
       products: JSON.parse(JSON.stringify(products)),
@@ -79,4 +103,4 @@ export async function getServerSideProps() {
   }
 }
 
-export default Home
+export default Page
