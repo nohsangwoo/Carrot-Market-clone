@@ -21,14 +21,13 @@ interface ProductResponse {
 const Home: NextPage = (): JSX.Element => {
   const { user, isLoading } = useUser()
   const { data } = useSWR<ProductResponse>('/api/products')
-  console.log('user: ', user)
 
   return (
     <Layout title="홈" hasTabBar seoTitle="Home">
       <div className="flex flex-col space-y-5 divide-y">
         {data
           ? data &&
-            data.products?.map(product => (
+            data?.products?.map(product => (
               <Item
                 id={product.id}
                 key={product.id}
@@ -78,11 +77,10 @@ const Page: NextPage<{ products: ProductWithCount[] }> = ({ products }) => {
   )
 }
 
-export const getServerSideProps = () => {
-  console.log('SSR')
+export const getServerSideProps = async () => {
   // const res = await fetch('/api/products')
   // const data = await res.json()
-  const products = client.product.findMany({
+  const products = await client.product.findMany({
     include: {
       _count: {
         select: {

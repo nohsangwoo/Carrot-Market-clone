@@ -1,4 +1,4 @@
-import React from 'react'
+import { ReactNode } from 'react'
 import Link from 'next/link'
 import { cls } from '@libs/client/utils'
 import { useRouter } from 'next/router'
@@ -8,15 +8,15 @@ interface LayoutProps {
   title?: string
   canGoBack?: boolean
   hasTabBar?: boolean
-  seoTitle: string
-  children: React.ReactNode
+  seoTitle?: string
+  children: ReactNode
 }
 
 export default function Layout({
   title,
   canGoBack,
   hasTabBar,
-  seoTitle,
+  seoTitle = '',
   children,
 }: LayoutProps) {
   const router = useRouter()

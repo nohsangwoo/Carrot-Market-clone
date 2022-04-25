@@ -1,10 +1,12 @@
-import type { NextPage } from 'next'
+import type { NextPage, NextPageContext } from 'next'
 import Link from 'next/link'
 import Layout from '@components/layout'
 import useUser from '@libs/client/useUser'
-import useSWR from 'swr'
+import useSWR, { SWRConfig } from 'swr'
 import { Review, User } from '@prisma/client'
 import { cls } from '@libs/client/utils'
+import client from '@libs/server/client'
+import { withSsrSession } from '@libs/server/withSession'
 
 interface ReviewWithUser extends Review {
   createdBy: User
@@ -17,6 +19,8 @@ interface ReviewsResponse {
 const Profile: NextPage = () => {
   const { user } = useUser()
   const { data } = useSWR<ReviewsResponse>('/api/reviews')
+
+  console.log('reviews data: ', user)
   return (
     <Layout hasTabBar title="나의 캐럿">
       <div className="px-4">
@@ -146,4 +150,50 @@ const Profile: NextPage = () => {
   )
 }
 
-export default Profile
+const Page: NextPage<{ profile: User; reviews: ReviewWithUser[] }> = ({
+  profile,
+  reviews,
+}) => {
+  console.log('inside profile page: ', reviews)
+  return (
+    <SWRConfig
+      value={{
+        fallback: {
+          '/api/users/me': { ok: true, profile },
+          '/api/reviews': { ok: true, reviews },
+        },
+      }}
+    >
+      <Profile />
+    </SWRConfig>
+  )
+}
+
+export const getServerSideProps = withSsrSession(
+  async ({ req }: NextPageContext) => {
+    const userId = req?.session.user?.id
+    const profile = await client.user.findUnique({
+      where: { id: userId },
+    })
+
+    const reviews = await client.review.findMany({
+      where: {
+        createdForId: userId,
+      },
+      include: {
+        createdBy: { select: { id: true, name: true, avatar: true } },
+      },
+    })
+
+    return {
+      props: {
+        profile: JSON.parse(JSON.stringify(profile)),
+        reviews: reviews.map(review => {
+          return JSON.parse(JSON.stringify(review))
+        }),
+      },
+    }
+  },
+)
+
+export default Page

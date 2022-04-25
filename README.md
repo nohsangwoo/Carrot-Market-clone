@@ -542,4 +542,4 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 ## useSWR on SSR
 
 - getServerSideProps에서 데이터를 불러온 후
-- 상위 컴포넌트에서 SWRConfig의 fallback
+- 상위 컴포넌트에서 SWRConfig의 fallback기능으로 initilizing해준다
