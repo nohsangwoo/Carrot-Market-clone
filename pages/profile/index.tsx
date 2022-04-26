@@ -20,7 +20,6 @@ const Profile: NextPage = () => {
   const { user } = useUser()
   const { data } = useSWR<ReviewsResponse>('/api/reviews')
 
-  console.log('reviews data: ', user)
   return (
     <Layout hasTabBar title="나의 캐럿">
       <div className="px-4">
@@ -154,7 +153,6 @@ const Page: NextPage<{ profile: User; reviews: ReviewWithUser[] }> = ({
   profile,
   reviews,
 }) => {
-  console.log('inside profile page: ', reviews)
   return (
     <SWRConfig
       value={{

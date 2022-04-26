@@ -7,22 +7,17 @@ import useMutation from '@libs/client/useMutation'
 import { cls } from '@libs/client/utils'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
+// import Bs from "@components/bs";
 
 const Bs = dynamic(
+  //@ts-ignore
   () =>
     new Promise(resolve =>
-      setTimeout(() => {
-        resolve(import('@components/bs'))
-      }, 10000),
+      setTimeout(() => resolve(import('@components/bs')), 10000),
     ),
-  {
-    ssr: false,
-    // nextJs가 loading을 제어하는 방법
-    // loading: () => <span>Loading...a big commponent for you</span>,
-    // react18기능
-    suspense: true,
-  },
+  { ssr: false, suspense: true, loading: () => <span>loading</span> },
 )
+
 interface EnterForm {
   email?: string
   phone?: string
@@ -62,7 +57,6 @@ const Enter: NextPage = () => {
     confirmToken(validForm)
   }
   const router = useRouter()
-
   useEffect(() => {
     if (tokenData?.ok) {
       router.push('/')
@@ -136,7 +130,7 @@ const Enter: NextPage = () => {
               ) : null}
               {method === 'phone' ? (
                 <>
-                  <Suspense fallback={<button>loading...!</button>}>
+                  <Suspense fallback={<button>loading!!</button>}>
                     <Bs />
                   </Suspense>
                   <Input

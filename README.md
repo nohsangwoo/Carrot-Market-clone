@@ -543,3 +543,9 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 
 - getServerSideProps에서 데이터를 불러온 후
 - 상위 컴포넌트에서 SWRConfig의 fallback기능으로 initilizing해준다
+
+## getStaticProps
+
+- 정적인 웹사이트를 만들도록 도와주는 기능
+- 이곳에서 .md파일을 읽어와서 gray-matter모듈로 파싱한다.
+- ref: https://www.npmjs.com/package/gray-matter
