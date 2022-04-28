@@ -557,3 +557,11 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 
 - getStaticProps를 이용하여 유동적인 route path를 생성할 때 필요함.
 - 동적으로 route path를 getStaticProps를 이용하여생성하는 경우 경로를 몇개나 만들껀지 미리 정해놔야한다.
+
+## remark-html
+
+- 데이터를 html로 가공해주는 것
+- ref: https://github.com/remarkjs/remark-html
+- npm i unified remark-parse remark-html
+
+* to-vfile는 md파일 읽을때 필요한데 이미 gray-matter로 read작업을 완료했으니 넘어간다.
