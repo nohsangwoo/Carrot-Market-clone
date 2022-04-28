@@ -555,4 +555,5 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 
 ## getStaticPath
 
-- getStaticProps를 이용하여 유동적인 route path를 생성하는 방법
+- getStaticProps를 이용하여 유동적인 route path를 생성할 때 필요함.
+- 동적으로 route path를 getStaticProps를 이용하여생성하는 경우 경로를 몇개나 만들껀지 미리 정해놔야한다.
