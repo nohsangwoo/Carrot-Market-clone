@@ -1,4 +1,4 @@
-import type { NextPage, NextPageContext } from 'next'
+import type { GetServerSideProps, NextPage, NextPageContext } from 'next'
 import Link from 'next/link'
 import Layout from '@components/layout'
 import useUser from '@libs/client/useUser'
@@ -167,7 +167,7 @@ const Page: NextPage<{ profile: User; reviews: ReviewWithUser[] }> = ({
   )
 }
 
-export const getServerSideProps = withSsrSession(
+export const getServerSideProps: GetServerSideProps = withSsrSession(
   async ({ req }: NextPageContext) => {
     const userId = req?.session.user?.id
     const profile = await client.user.findUnique({
