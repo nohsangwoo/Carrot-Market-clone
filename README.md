@@ -544,19 +544,39 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 - getServerSideProps에서 데이터를 불러온 후
 - 상위 컴포넌트에서 SWRConfig의 fallback기능으로 initilizing해준다
 
+## getServerSideProps
+
+- "page가 요청받을때마다" 호출되어 pre-rendering한다.
+- SSR (Server Side Rendering) 개념입니다.
+- pre-render가 꼭 필요한 동적 데이터가 있는 page에 사용하면 된다
+- 매 요청마다 호출되므로 성능은 getStaticProps에 뒤지지만, 내용을 언제든 동적으로 수정이 가능하다
+
 ## getStaticProps
 
-- 정적인 웹사이트를 만들도록 도와주는 기능(걍 html파일을 생성한다고 생각하면 됨)
-- 파일을 읽고 불러올 수 있음
+- 정적인 html파일이 build되기 직전에 props를 끼워 넣어준다
+- getServerSideProps랑 비슷함 but,
+- "빌드 시에 딱 한 번"만 호출되고, 바로 static file로 됨.
+- 따라서, 이후 수정이 불가능합니다. SSG (Static Site Generation) 개념
+- 앱 빌드 후에 웬만하면 바뀌지 않는 내용 (고정된 내용)이 있는 page가 있는 경우에만 사용하는 것이 좋다
+- 장점은 호출 시 마다 매번 data fetch를 하지 않으니 getServerSideProps보다 성능면에서 좋음
+- 이곳에서 파일을 읽고 불러올 수 있음 (back단이기 때문에)
 - 이곳에서 .md파일을 읽어와서 gray-matter모듈로 파싱한다.
 - ref: https://www.npmjs.com/package/gray-matter
 - gray-matter는 데이터를 가공하고 참조 할 수있음
 - 불러온 데이터를 가지고 바인딩 해준다.
 
+## readdirSync
+
+- 해당 디렉토리내에 모든 파일 읽어온다.
+
 ## getStaticPath
 
 - getStaticProps를 이용하여 유동적인 route path를 생성할 때 필요함.
+- 미리 route를 만들어 두는 기능
 - 동적으로 route path를 getStaticProps를 이용하여생성하는 경우 경로를 몇개나 만들껀지 미리 정해놔야한다.
+
+- 언제 getStaticPath를 실행해야하는지?
+  https://nextjs.org/docs/basic-features/data-fetching/get-static-paths#when-does-getstaticpaths-run
 
 ## remark-html
 
@@ -565,3 +585,35 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 - npm i unified remark-parse remark-html
 
 * to-vfile는 md파일 읽을때 필요한데 이미 gray-matter로 read작업을 완료했으니 넘어간다.
+
+## Incremental Static Regeneration(ISR)
+
+- ref: https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration
+- 로딩상태가 표시되지 않고 getServerSideProps를 사용하지 않아도 페이지를 즉석에서 불러올 수 있게된다. 그럼에도 데이터는 항상 최신의 데이터를 fetching할 수 있다.
+- getStaticProps를 사용하는 html을 가끔씩 새로고침 하라고 명령할 수 있다.(주기적으로)
+- revalidate: 10, (10초 후에 백그라운드에서 캐싱된 html파일을 다시 받아와라)
+- 이 기능을 확인하려면 npm run build 후 npm run start 해줘야 한다.
+  (production mode에서 정상 동작 한다)
+
+## On Demand Revalidation
+
+- ref: https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration#on-demand-revalidation-beta
+- 수동으로 getStaticProps를 어디서든 실행 할 수 있다.
+- 말그대로 사용자 요청에따라 Revalidation을 즉시 실행한다.
+- 이것은 api handler이다.
+- nextjs의 api로직안에서 동작시키면된다.
+
+```
+# 예시
+    await res.unstable_revalidate('/comunity')
+
+```
+
+- middleware error 해결하기
+  20220616기준 미들웨어 이슈가 존재한다.
+
+## nextjs 버젼업데이트시
+
+- npm i next@latest
+- npm i react@latest react-dom@latest
+  순서대로 해주면 된다

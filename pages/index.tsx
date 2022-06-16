@@ -93,7 +93,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   // const profile = await client.user.findUnique({
   //   where: { id: req.session.user?.id },
   // })
-
   return {
     props: {
       products: JSON.parse(JSON.stringify(products)),

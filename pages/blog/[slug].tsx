@@ -6,7 +6,10 @@ import remarkHtml from 'remark-html'
 import remarkParse from 'remark-parse'
 import { unified } from 'unified'
 
-const Post: NextPage<{ post: string; data: any }> = ({ post, data }) => {
+const Post: NextPage<{
+  post: string
+  data: { title: string; date: string; category: string }
+}> = ({ post, data }) => {
   return (
     <Layout title={data.title}>
       <div
