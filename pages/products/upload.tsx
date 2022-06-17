@@ -26,20 +26,28 @@ const Upload: NextPage = () => {
   const { register, handleSubmit, watch } = useForm<UploadProductForm>()
   const [uploadProduct, { loading, data }] =
     useMutation<UploadProductMutation>('/api/products')
+
   const onValid = async ({ name, price, description }: UploadProductForm) => {
     if (loading) return
+
     if (photo && photo.length > 0) {
       const { uploadURL } = await (await fetch(`/api/files`)).json()
+      console.log('uploadURL: ', uploadURL)
       const form = new FormData()
       form.append('file', photo[0], name)
+
       const {
         result: { id },
       } = await (await fetch(uploadURL, { method: 'POST', body: form })).json()
+
+      console.log('params check: ', name, price, description, id)
+
       uploadProduct({ name, price, description, photoId: id })
     } else {
       uploadProduct({ name, price, description })
     }
   }
+
   useEffect(() => {
     if (data?.ok) {
       router.replace(`/products/${data.product.id}`)

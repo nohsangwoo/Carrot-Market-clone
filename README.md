@@ -617,3 +617,10 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 - npm i next@latest
 - npm i react@latest react-dom@latest
   순서대로 해주면 된다
+
+## blocking ssg
+
+- 데이터에 의존하는 ssg를 생성할 때 getStaticPath로 미리 경로를 만들어 두는 방법
+- 이전에는 파일로 미리 만들어질 path를 알 수 있었으나 path arguement를 fetching해야 하는 경우는 조금 다르다
+- 미리 html파일을 빌드하지 않고 사용자의 요청에 따라 그때그때 build하는 기능
+- getStaticPaths의 fallback 기능을 활용한다.
