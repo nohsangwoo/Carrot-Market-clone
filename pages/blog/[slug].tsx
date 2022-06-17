@@ -21,13 +21,14 @@ const Post: NextPage<{
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
-  const files = readdirSync('./posts').map(file => {
-    const [name, extension] = file.split('.')
-    return { params: { slug: name } }
-  })
+  // const files = readdirSync('./posts').map(file => {
+  //   const [name, extension] = file.split('.')
+  //   return { params: { slug: name } }
+  // })
   return {
-    paths: files,
-    fallback: false,
+    // paths: files,
+    paths: [],
+    fallback: 'blocking',
   }
 }
 

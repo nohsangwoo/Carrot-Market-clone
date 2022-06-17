@@ -187,6 +187,7 @@ export const getStaticProps: GetStaticProps = async ctx => {
     },
   })
   const isLiked = false
+  // await new Promise(resolve => setTimeout(resolve, 10000))
   // const isLiked = Boolean(
   //   await client.fav.findFirst({
   //     where: {

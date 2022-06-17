@@ -624,3 +624,7 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 - 이전에는 파일로 미리 만들어질 path를 알 수 있었으나 path arguement를 fetching해야 하는 경우는 조금 다르다
 - 미리 html파일을 빌드하지 않고 사용자의 요청에 따라 그때그때 build하는 기능
 - getStaticPaths의 fallback 기능을 활용한다.
+
+## fallback: "blocking"의 기능
+
+- 유저가 해당 페이지에 들어갔을때 html파일이 서버단에 빌드되지 않은 상태라면 유저를 잠시 기다리게하고 백그라운드에서 해당 페이지를 build한 후 유저에게 전달해준다.
