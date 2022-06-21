@@ -646,3 +646,8 @@ export const config = {
 runtime: "edge",
 };
 ```
+
+## fetching in server components
+
+- coinpaprika를 이용하여 펫칭해본다
+- ref: https://api.coinpaprika.com/
