@@ -632,3 +632,17 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 ## react server components
 
 - ref: https://nextjs.org/docs/advanced-features/react-18/server-components
+- ref: https://github.com/vercel/next-react-server-components
+- 아직은 custom document를 일반적으로 사용할 수 없다.
+  \_document.tsx를 함수형으로 변경해야한다
+- components의 파일 이름은 componentname.server.tsx 패턴으로 짓는다.
+- conins.server.tsx로 테스트 프로젝트를 생성한다.
+  그러나 css적용이 잘 안되는 이슈가 있어서(알파버젼이라서) \_app.tsx를 \_appp.tsx로 변경하여 테스트 진행하면 css가 잘 적용된다.
+- 앞으로는 frontend단에서 바로 api handling이 가능해질 것이다. backend 작업을 프론트단에서 할 수있는 신기한 작업..
+- 하단에 추가해야하는 내용
+
+```
+export const config = {
+runtime: "edge",
+};
+```
