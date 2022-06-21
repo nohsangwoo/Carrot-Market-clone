@@ -16,6 +16,8 @@ async function handler(
     },
     include: { createdBy: { select: { id: true, name: true, avatar: true } } },
   })
+  await new Promise(resolve => setTimeout(resolve, 5000))
+
   return res.json({
     ok: true,
     reviews,
