@@ -43,6 +43,7 @@ const ItemDetail: NextPage<ItemDetailResponse> = ({
     // mutate("/api/users/me", (prev: any) => ({ ok: !prev.ok }), false);
     toggleFav({})
   }
+
   return (
     <Layout canGoBack seoTitle="Product Detail">
       <div className="px-4  py-4">

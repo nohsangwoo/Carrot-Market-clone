@@ -628,3 +628,7 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 ## fallback: "blocking"의 기능
 
 - 유저가 해당 페이지에 들어갔을때 html파일이 서버단에 빌드되지 않은 상태라면 유저를 잠시 기다리게하고 백그라운드에서 해당 페이지를 build한 후 유저에게 전달해준다.
+
+## react server components
+
+- ref: https://nextjs.org/docs/advanced-features/react-18/server-components

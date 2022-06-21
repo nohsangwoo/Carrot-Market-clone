@@ -14,7 +14,6 @@ const ImageWithFallback = ({ src, alt, ...rest }: ImageProps) => {
       setCurrentSrc(src)
     }
   }, [currentSrc, src])
-
   return (
     <Image
       src={isError ? fallbackSrc : currentSrc}
