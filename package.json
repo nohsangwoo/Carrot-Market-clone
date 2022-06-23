@@ -13,7 +13,6 @@
     "dblogin": "pscale auth login"
   },
   "dependencies": {
-    "@next/swc-darwin-arm64": "^12.0.10",
     "@prisma/client": "^3.15.2",
     "@sendgrid/mail": "^7.6.2",
     "@tailwindcss/forms": "^0.4.0",
