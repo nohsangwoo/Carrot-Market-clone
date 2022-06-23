@@ -631,6 +631,7 @@ cloud flare에서 자체 제공하는데 해당 외부 도메인을 next.config�
 
 ## react server components
 
+- server단에서 react를 구동하는 개념 (아직 알파단계)
 - ref: https://nextjs.org/docs/advanced-features/react-18/server-components
 - ref: https://github.com/vercel/next-react-server-components
 - 아직은 custom document를 일반적으로 사용할 수 없다.
@@ -651,3 +652,18 @@ runtime: "edge",
 
 - coinpaprika를 이용하여 펫칭해본다
 - ref: https://api.coinpaprika.com/
+
+## filename.client.tsx
+
+- 파일이 프론트엔드에서만 렌더링 되도록 설정하는것 (server.component와 완벽하게 반대 개념)
+
+## pscale new fork branch and production branch
+
+- 말그대로 production용 branch와 개발용 branch를 따로 두고 db를 관리한다.
+
+- production branch로 지정된 branch는 이제 더이상 바로 스키마를 변경 할 수 없다.
+- 개발용 branch를 먼저 스키마 변경을 적용한 후 해당 branch에서 production branch로 merge하는 형식으로 진행 할 수 있다.
+
+## deploy to production branch
+
+- Create a deploy request 를 실행한다. (overview에 있음)
