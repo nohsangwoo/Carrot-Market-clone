@@ -17,7 +17,9 @@ interface ReviewsResponse {
 }
 
 const Reviews = () => {
-  const { data } = useSWR<ReviewsResponse>('/api/reviews')
+  const { data } = useSWR<ReviewsResponse>(
+    typeof window === 'undefined' ? null : '/api/reviews',
+  )
   return (
     <>
       {data?.reviews.map(review => (
@@ -64,7 +66,7 @@ const MiniProfile = () => {
     <div className="mt-4 flex items-center space-x-3">
       {user?.avatar ? (
         <img
-          src={`https://imagedelivery.net/aSbksvJjax-AUC7qVnaC4A/${user?.avatar}/avatar`}
+          src={`https://imagedelivery.net/F970tsu1DA6roLNnxFl6kw/${user?.avatar}/avatar`}
           className="h-16 w-16 rounded-full bg-slate-500"
         />
       ) : (
@@ -168,13 +170,13 @@ const Profile: NextPage = () => {
 
 const Page: NextPage = () => {
   return (
-    <SWRConfig
-      value={{
-        suspense: true,
-      }}
-    >
-      <Profile />
-    </SWRConfig>
+    // <SWRConfig
+    //   value={{
+    //     suspense: true,
+    //   }}
+    // >
+    <Profile />
+    // </SWRConfig>
   )
 }
 

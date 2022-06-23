@@ -2,8 +2,8 @@ import Link from 'next/link'
 import ImageWithFallback from './ImageWithFallback'
 
 interface ItemProps {
-  title: string
   id: number
+  title: string
   price: number
   image: string
   hearts: number

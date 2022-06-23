@@ -8,7 +8,7 @@
     "lint": "next lint",
     "dbpush": "npx prisma db push",
     "studio": "npx prisma studio",
-    "db_connect_prod": "pscale connect carrot-market",
+    "db_connect_prod": "pscale connect carrot-market main",
     "db_connect_dev": "pscale connect carrot-market dev",
     "dblogin": "pscale auth login"
   },
