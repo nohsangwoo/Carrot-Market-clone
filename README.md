@@ -667,3 +667,7 @@ runtime: "edge",
 ## deploy to production branch
 
 - Create a deploy request 를 실행한다. (overview에 있음)
+
+## deploy Nextjs to vercel
+
+- https://vercel.com/
