@@ -673,6 +673,7 @@ runtime: "edge",
 - https://vercel.com/
 
 ## issue1
+
 - ref: https://nextjs.org/docs/messages/react-hydration-error
 
 ## useSWR issue - 절대경로를 사용하라는 에러
@@ -692,3 +693,5 @@ return NextResponse.rewrite(new URL('/enter', request.url))
 ```
 
 https://nextjs.org/docs/messages/middleware-relative-urls
+
+# vercel 에

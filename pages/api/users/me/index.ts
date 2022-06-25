@@ -11,6 +11,8 @@ async function handler(
     const profile = await client.user.findUnique({
       where: { id: req.session.user?.id },
     })
+
+    console.log("touch this user's profile: ", profile)
     return res.json({
       ok: true,
       profile,

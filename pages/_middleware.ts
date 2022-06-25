@@ -12,9 +12,7 @@ const middleware = (req: NextRequest, evt: NextFetchEvent) => {
       if (!req.url.includes('/enter') && !req.cookies.carrotsession) {
         const url = req.nextUrl.clone()
         url.pathname = '/enter'
-        return NextResponse.redirect(url)
-        // or like this
-        // return NextResponse.redirect(new URL('/enter', req.url))
+        return NextResponse.rewrite(new URL('/enter', req.url))
       }
     }
   }
