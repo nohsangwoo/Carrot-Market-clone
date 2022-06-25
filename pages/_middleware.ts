@@ -13,6 +13,8 @@ const middleware = (req: NextRequest, evt: NextFetchEvent) => {
         const url = req.nextUrl.clone()
         url.pathname = '/enter'
         return NextResponse.redirect(url)
+        // or like this
+        // return NextResponse.redirect(new URL('/enter', req.url))
       }
     }
   }

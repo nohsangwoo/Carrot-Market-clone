@@ -7,7 +7,7 @@ import { Review, User } from '@prisma/client'
 import { cls } from '@libs/client/utils'
 import { withSsrSession } from '@libs/server/withSession'
 import client from '@libs/server/client'
-import { Suspense } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 interface ReviewWithUser extends Review {
   createdBy: User
 }
@@ -62,12 +62,15 @@ const Reviews = () => {
 
 const MiniProfile = () => {
   const { user } = useUser()
+
+  // const user: any = ''
   return (
     <div className="mt-4 flex items-center space-x-3">
       {user?.avatar ? (
         <img
           src={`https://imagedelivery.net/F970tsu1DA6roLNnxFl6kw/${user?.avatar}/avatar`}
           className="h-16 w-16 rounded-full bg-slate-500"
+          alt="avatar"
         />
       ) : (
         <div className="h-16 w-16 rounded-full bg-slate-500" />
@@ -168,29 +171,43 @@ const Profile: NextPage = () => {
   )
 }
 
-const Page: NextPage = () => {
+interface Props {
+  getUrl: string
+}
+
+const Page: NextPage<Props> = ({ getUrl }) => {
+  console.log('getUrl ', getUrl)
   return (
-    // <SWRConfig
-    //   value={{
-    //     suspense: true,
-    //   }}
-    // >
-    <Profile />
-    // </SWRConfig>
+    <SWRConfig
+      value={{
+        suspense: true,
+      }}
+    >
+      <Profile />
+    </SWRConfig>
   )
 }
 
-/* export const getServerSideProps = withSsrSession(async function ({
+export const getServerSideProps = withSsrSession(async function ({
   req,
 }: NextPageContext) {
-  const profile = await client.user.findUnique({
-    where: { id: req?.session.user?.id },
-  });
+  // const profile = await client.user.findUnique({
+  //   where: { id: req?.session.user?.id },
+  // })
+  const protocol = req ? 'https:' : 'http:'
+  let host = req
+    ? req.headers['x-forwarded-host'] || req.headers['host']
+    : window.location.host
+
+  console.log('proptocol: ', protocol)
+  console.log('host: ', host)
+  console.log('in getServerSideProps of Profile', req?.headers.host)
   return {
     props: {
-      profile: JSON.parse(JSON.stringify(profile)),
+      getUrl: 'haha',
+      // profile: JSON.parse(JSON.stringify(profile)),
     },
-  };
-}); */
+  }
+})
 
 export default Page

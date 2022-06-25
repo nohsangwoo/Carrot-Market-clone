@@ -671,3 +671,24 @@ runtime: "edge",
 ## deploy Nextjs to vercel
 
 - https://vercel.com/
+
+## issue1
+- ref: https://nextjs.org/docs/messages/react-hydration-error
+
+## useSWR issue - 절대경로를 사용하라는 에러
+
+```
+Unhandled Runtime Error
+Error: Only absolute URLs are supported
+```
+
+오류 해결방법
+이 오류를 수정하려면 redirect 및 rewrite을 위해 항상 absolute URL을 전달해야 합니다. absolute URL을 얻는 방법에는 여러 가지가 있지만 권장되는 방법은 NextURL을 복제하고 변경하는 것입니다.
+
+```
+export function middleware(request: NextRequest) {
+return NextResponse.rewrite(new URL('/enter', request.url))
+}
+```
+
+https://nextjs.org/docs/messages/middleware-relative-urls
