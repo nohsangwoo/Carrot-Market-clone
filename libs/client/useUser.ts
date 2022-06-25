@@ -12,15 +12,13 @@ interface ProfileResponse {
 }
 
 export default function useUser() {
-  console.log('process.env.NODE_ENV: ')
-
   const { data, error } = useSWR<ProfileResponse>(
-    `http://localhost:3000/api/users/me`,
+    typeof window === 'undefined' ? null : '/users/me',
   )
   const router = useRouter()
-  console.log(process.env.NODE_ENV === 'development')
-  console.log(process.env.NEXT_PUBLIC_APSOLUTE_URL_DEV)
-  console.log(process.env.NEXT_PUBLIC_APSOLUTE_URL_PROD)
+  // console.log(process.env.NODE_ENV === 'development')
+  // console.log(process.env.NEXT_PUBLIC_APSOLUTE_URL_DEV)
+  // console.log(process.env.NEXT_PUBLIC_APSOLUTE_URL_PROD)
 
   useEffect(() => {
     if (data && !data.ok) {
