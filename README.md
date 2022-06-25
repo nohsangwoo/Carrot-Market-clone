@@ -694,4 +694,8 @@ return NextResponse.rewrite(new URL('/enter', request.url))
 
 https://nextjs.org/docs/messages/middleware-relative-urls
 
-# vercel 에
+# vercel - production branch와 preview branch를 구분하여 배포
+
+- preview branch는 그냥 따로 브랜치를 git에서 만들어 푸시해도 자동으로 감지하여 vercel에서 서브로 배포된다.
+- 이때 프리뷰에서 빌드한 프로젝트가 정상 동작한다면 production에 배포하면된다.
+  (홈페이지에서도 가능하고 git control로도 가능하다)
